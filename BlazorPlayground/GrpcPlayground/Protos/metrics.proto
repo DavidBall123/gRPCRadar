@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package metrics;
+
+import "google/protobuf/empty.proto";
+
+message MetricsReply {
+  double cpu_percent      = 1;   
+  double working_set_mb   = 2;   
+  int64  unix_time_ms     = 3;   
+}
+
+service SystemMetrics {
+  rpc StreamMetrics (google.protobuf.Empty) returns (stream MetricsReply);
+}
